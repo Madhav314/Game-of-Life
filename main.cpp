@@ -9,6 +9,9 @@ using namespace std;
     Author: Madhav Prasad Dhimal
 */
 
+const int width = 100;
+const int height = 30;
+
 void BlankMap(){
 
     int i;
@@ -16,8 +19,8 @@ void BlankMap(){
     ofstream File;
     File.open("Map.txt");
 
-    for(i = 0; i < 30; i++){
-        for(j = 0; j < 100; j++){
+    for(i = 0; i < height; i++){
+        for(j = 0; j < width; j++){
             File << "0";
         }
         File << "\n";
@@ -37,9 +40,9 @@ void Import(char Map[30][100]){
     ifstream File;
     File.open("Map.txt");
 
-    for(i = 0; i < 30; i++){
+    for(i = 0; i < height; i++){
         getline(File, line);
-        for(j = 0; j < 100; j++){
+        for(j = 0; j < width; j++){
             Map[i][j] = line[j];
         }
     }
@@ -54,8 +57,8 @@ void Print(char Map[30][100]){
 
     cout << "\n\n\n\n\n\n\n\n\n\n\n";
 
-    for(i = 0; i < 30; i++){
-        for(j = 0; j < 100; j++){
+    for(i = 0; i < height; i++){
+        for(j = 0; j < width; j++){
             if(Map[i][j] == '0'){
                 cout << "o";
             }
@@ -77,7 +80,7 @@ bool Stable(char Map[30][100], int x, int y){
 
     for(i = -1; i <= 1; i++){
         for(j = -1; j <= 1; j++){
-            if(x+i >= 0 && x+i < 30 && y+j >= 0 && y+j < 100 && Map[x+i][y+j] == '1'){
+            if(x+i >= 0 && x+i < height && y+j >= 0 && y+j < width && Map[x+i][y+j] == '1'){
                 count++;
             }
         }
@@ -101,7 +104,7 @@ bool Revive(char Map[30][100], int x, int y){
 
     for(i = -1; i <= 1; i++){
         for(j = -1; j <= 1; j++){
-            if(x+i >= 0 && x+i < 30 && y+j >= 0 && y+j < 100 && Map[x+i][y+j] == '1'){
+            if(x+i >= 0 && x+i < height && y+j >= 0 && y+j < width && Map[x+i][y+j] == '1'){
                 count++;
             }
         }
@@ -121,8 +124,8 @@ void Logic(char Map[30][100], char NextMap[30][100]){
     int i;
     int j;
 
-    for(i = 0; i < 30; i++){
-        for(j = 0; j < 100; j++){
+    for(i = 0; i < height; i++){
+        for(j = 0; j < width; j++){
             if(Map[i][j] == '1' && !Stable(Map, i, j)){
                 NextMap[i][j] = '0'; // Dies
             }
@@ -143,8 +146,8 @@ void Swap(char Map[30][100], char NextMap[30][100]){
     int j;
     char temp;
 
-    for(i = 0; i < 30; i++){
-        for(j = 0; j < 100; j++){
+    for(i = 0; i < height; i++){
+        for(j = 0; j < width; j++){
             temp = Map[i][j];
             Map[i][j] = NextMap[i][j];
             NextMap[i][j] = Map[i][j];
@@ -159,8 +162,8 @@ bool done(char Map[30][100], char NextMap[30][100]){
 
     int count = 0;
 
-    for(i = 0; i < 30; i++){
-        for(j = 0; j < 100; j++){
+    for(i = 0; i < height; i++){
+        for(j = 0; j < width; j++){
             if(Map[i][j] == NextMap[i][j]){
                 count++;
             }
