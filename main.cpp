@@ -2,6 +2,7 @@
 #include <fstream>
 #include <unistd.h>
 #include <string>
+#include <cstring>
 
 using namespace std;
 
@@ -22,6 +23,29 @@ void BlankMap(){
     for(i = 0; i < height; i++){
         for(j = 0; j < width; j++){
             File << "0";
+        }
+        File << "\n";
+    }
+    
+
+    File.close();
+}
+
+void RandomMap(){
+
+    int i;
+    int j;
+    ofstream File;
+    File.open("Map.txt");
+
+    for(i = 0; i < 30; i++){
+        for(j = 0; j < 100; j++){
+            if(rand() % 2 == 0){
+            File << "0";
+            }
+            else{
+                File << "1";
+            }
         }
         File << "\n";
     }
