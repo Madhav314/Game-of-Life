@@ -175,7 +175,7 @@ bool done(char Map[30][100], char NextMap[30][100]){
     return false;
 }
 
-int main(){
+int main(int argc, char *argv[]){
 
     int i;
     int j;
@@ -184,7 +184,12 @@ int main(){
 
     char NextMap[30][100];
 
-    //BlankMap();
+    if(strcmp(argv[1], "1") == 0){
+        BlankMap();
+    }
+    else if(strcmp(argv[1], "2") == 0){
+        RandomMap();
+    }
     
     Import(Map);
 
